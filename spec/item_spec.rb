@@ -26,16 +26,21 @@ describe Item do
     it "should be able to get and set name" do
       @item.name="New Name"
       expect(@item.name).to eq("New Name")
-    end   
+    end
     it "should be able to get and set price" do
       @item.price=44.99
       expect(@item.price).to eq(44.99)
-    end   
+    end
     it "should be able to get and set description" do
       expect(@item.description).to eq("")
       @item.description="test"
       expect(@item.description).to eq("test")
-    end    
+    end
+    it "should be able to get and set weight" do
+      expect(@item.weight).to eq(0)
+      @item.weight=1
+      expect(@item.weight).to eq(1)
+    end
   end
 
   describe "Methods" do
@@ -53,7 +58,18 @@ describe Item do
       result = @item.sell 3
       expect(result).to eq(true)
       expect(@item.quantity).to eq(2)
-    end    
+    end
+    it "should be able to return items and update quantity" do
+      result = @item.returns 1
+      expect(result).to eq(true)
+      expect(@item.quantity).to eq(3)
+    end
+    it "should be able to calculate shipping costs" do
+      result = @item.ship_price 1.2
+      expect(result).to eq(true)
+      expect(@item.weight).to eq(1)
+    end
+
   end
 
 end
